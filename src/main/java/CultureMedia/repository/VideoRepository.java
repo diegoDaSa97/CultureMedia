@@ -1,12 +1,12 @@
 package CultureMedia.repository;
 
-import CultureMedia.model.Videos;
+import CultureMedia.model.Video;
 
 import java.util.List;
 
 public interface VideoRepository {
-    List<Videos> findAll();
-    Videos save( Videos save);
-    List<Videos> find (String Title);
-    List<Videos> find(Double fromDuration, Double toDuration);
+    List<Video> findAll();
+    Video save(Video save);
+    List<Video> find (String Title);
+    List<Video> find(Double fromDuration, Double toDuration);
 }
