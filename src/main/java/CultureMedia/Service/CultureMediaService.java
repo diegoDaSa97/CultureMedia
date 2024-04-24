@@ -1,4 +1,4 @@
-package CultureMedia.repository;
+package CultureMedia.Service;
 
 import CultureMedia.model.Video;
 import CultureMedia.model.View;
