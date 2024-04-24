@@ -1,4 +1,4 @@
-package CultureMedia.repository.Impl;
+package CultureMedia.repository.impl;
 
 import java.util.ArrayList;
 import java.util.List;

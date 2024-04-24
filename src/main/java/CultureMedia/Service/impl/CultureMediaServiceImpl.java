@@ -1,4 +1,4 @@
-package CultureMedia.Service.Impl;
+package CultureMedia.Service.impl;
 
 import CultureMedia.exception.DurationNotValidException;
 import CultureMedia.exception.VideoNotFoundException;
