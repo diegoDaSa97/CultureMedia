@@ -4,11 +4,8 @@ import java.text.MessageFormat;
 
 public class DurationNotValidException extends CultureMediaException {
 
-    public DurationNotValidException(){
-        super ("");
-    }
 
     public DurationNotValidException(String Title, Double Duration){
-        super (MessageFormat.format("Invalid duration{0}", Duration));
+        super (MessageFormat.format("No Videos found with title{0} and Duration {1}", Title, Duration));
     }
 }

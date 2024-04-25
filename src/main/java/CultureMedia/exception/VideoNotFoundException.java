@@ -5,10 +5,10 @@ import java.text.MessageFormat;
 
 public class VideoNotFoundException extends CultureMediaException {
 
-    public VideoNotFoundException(){
-        super("");
+    public VideoNotFoundException(String Title){
+        super(MessageFormat.format("invalid title for thee video{0}", Title));
     }
-    public VideoNotFoundException(String title){
-        super(MessageFormat.format("Invalid title for the video {0}", title));
+    public VideoNotFoundException(){
+        super("Video not found");
     }
 }
