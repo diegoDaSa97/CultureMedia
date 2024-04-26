@@ -1,13 +1,13 @@
-package CultureMedia.service.impl;
+package cultureMedia.service.impl;
 
-import CultureMedia.exception.VideoNotFoundException;
-import CultureMedia.model.Video;
-import CultureMedia.model.View;
-import CultureMedia.repository.VideoRepository;
-import CultureMedia.repository.ViewsRepository;
-import CultureMedia.repository.impl.VideoRepositoryImpl;
-import CultureMedia.repository.impl.ViewsRepositoryImpl;
-import CultureMedia.service.CultureMediaService;
+import cultureMedia.exception.VideoNotFoundException;
+import cultureMedia.model.Video;
+import cultureMedia.model.View;
+import cultureMedia.repository.VideoRepository;
+import cultureMedia.repository.ViewsRepository;
+import cultureMedia.repository.impl.VideoRepositoryImpl;
+import cultureMedia.repository.impl.ViewsRepositoryImpl;
+import cultureMedia.service.CultureMediaService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.List;

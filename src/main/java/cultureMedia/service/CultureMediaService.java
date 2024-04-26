@@ -1,8 +1,8 @@
-package CultureMedia.service;
+package cultureMedia.service;
 
-import CultureMedia.exception.VideoNotFoundException;
-import CultureMedia.model.Video;
-import CultureMedia.model.View;
+import cultureMedia.exception.VideoNotFoundException;
+import cultureMedia.model.Video;
+import cultureMedia.model.View;
 
 import java.util.List;
 
