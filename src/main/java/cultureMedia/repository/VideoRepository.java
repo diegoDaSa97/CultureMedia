@@ -1,6 +1,6 @@
-package CultureMedia.repository;
+package cultureMedia.repository;
 
-import CultureMedia.model.Video;
+import cultureMedia.model.Video;
 
 import java.util.List;
 

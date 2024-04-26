@@ -1,8 +1,8 @@
-package CultureMedia.repository;
+package cultureMedia.repository;
 
-import CultureMedia.model.Video;
+import cultureMedia.model.Video;
 
-import CultureMedia.repository.impl.VideoRepositoryImpl;
+import cultureMedia.repository.impl.VideoRepositoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

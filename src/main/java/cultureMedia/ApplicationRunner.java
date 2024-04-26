@@ -1,4 +1,4 @@
-package CultureMedia;
+package cultureMedia;
 
 public class ApplicationRunner {
 }

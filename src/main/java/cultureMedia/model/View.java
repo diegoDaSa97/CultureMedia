@@ -1,4 +1,4 @@
-package CultureMedia.model;
+package cultureMedia.model;
 
 import java.time.LocalDateTime;
 
