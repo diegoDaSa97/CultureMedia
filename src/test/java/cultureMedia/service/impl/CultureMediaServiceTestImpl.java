@@ -8,17 +8,18 @@ import cultureMedia.repository.ViewsRepository;
 import cultureMedia.repository.impl.VideoRepositoryImpl;
 import cultureMedia.repository.impl.ViewsRepositoryImpl;
 import cultureMedia.service.CultureMediaService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 
 class CultureMediaServiceTestImpl {
-    CultureMediaService cultureMediaService;
-    VideoRepository videoRepository;
-    ViewsRepository viewsRepository;
-    Video video ;
+    ViewsRepository viewsRepository = Mockito.mock();
+    VideoRepository videoRepository = Mockito.mock();
+    CultureMediaService cultureMediaService = new CultureMediaServiceImpl(videoRepository, viewsRepository);
     List<Video> videos = List.of(
             new Video("01", "video 1", "a video", 3.4),
             new Video("02", "video 2", "a video", 4.4),
@@ -26,21 +27,10 @@ class CultureMediaServiceTestImpl {
             new Video("04", "short 4", "a video", 6.0),
             new Video("05", "video 5", "a video", 2.1)
     );
-    View view;
 
-    @BeforeEach
-    void setUp() {
-        viewsRepository = new ViewsRepositoryImpl();
-        videoRepository = new VideoRepositoryImpl();
-        cultureMediaService = new CultureMediaServiceImpl(videoRepository, viewsRepository);
-    }
-
-    private void fillVideos() throws VideoNotFoundException{
-        videos.forEach(video -> cultureMediaService.save(video));
-    }
 
     @Test
-    void fid_all_exception() {
+    void find_all_exception() {
         assertThrows(VideoNotFoundException.class, () -> {
             cultureMediaService.findAll();
         });
@@ -48,9 +38,10 @@ class CultureMediaServiceTestImpl {
 
     @Test
     void find_all() throws VideoNotFoundException {
-        fillVideos();
-        boolean target = cultureMediaService.findAll().containsAll(videos);
+        doReturn(videos).when(videoRepository).findAll();
+        var target = videos.containsAll(cultureMediaService.findAll());
         assertTrue(target);
+
     }
 
     @Test
@@ -65,17 +56,18 @@ class CultureMediaServiceTestImpl {
 
     @Test
     void find_by_title_video() throws VideoNotFoundException {
-        fillVideos();
-        List<Video> expected = videos.stream().filter(video -> video.title().contains("video")).toList();
-        boolean target = cultureMediaService.find("video").containsAll(expected);
-        assertTrue(target);
+        var parameter = "video";
+        var expected = videos.stream().filter(p -> p.title().contains(parameter)).toList();
+        doReturn(expected).when(videoRepository).find(parameter);
+        var result = cultureMediaService.find(parameter).containsAll(expected);
+        assertTrue(result);
     }
 
     @Test
     void find_by_duration_video() throws VideoNotFoundException {
-        fillVideos();
-        List<Video> expected = videos.stream().filter(p -> p.duration() <= 5.0 && p.duration() >= 3.0).toList();
-        boolean target = cultureMediaService.find(3.0, 5.0).containsAll(expected);
+        var expected = videos.stream().filter(p -> p.duration() <= 5.0 && p.duration() >= 3.0).toList();
+        doReturn(expected).when(videoRepository).find(3.0, 5.0);
+        var target = cultureMediaService.find(3.0, 5.0).containsAll(expected);
         assertTrue(target);
     }
 }
