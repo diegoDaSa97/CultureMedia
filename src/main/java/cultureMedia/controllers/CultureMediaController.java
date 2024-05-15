@@ -1,17 +1,14 @@
 package cultureMedia.controllers;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import cultureMedia.exception.VideoNotFoundException;
 import cultureMedia.model.Video;
-import cultureMedia.model.View;
-import cultureMedia.repository.ViewsRepository;
 import cultureMedia.repository.impl.VideoRepositoryImpl;
+import cultureMedia.repository.impl.ViewsRepositoryImpl;
 import cultureMedia.service.CultureMediaService;
 import cultureMedia.service.impl.CultureMediaServiceImpl;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,20 +25,16 @@ public class CultureMediaController {
         this.cultureMediaService = cultureMediaService;
     }
 
-    public CultureMediaController() {this.cultureMediaService = new CultureMediaServiceImpl(new VideoRepositoryImpl(), new ViewsRepository() {
-        @Override
-        public View save(View save) {
-            return null;
-        }
-    });
+    public CultureMediaController() {
+        this.cultureMediaService = new CultureMediaServiceImpl(new VideoRepositoryImpl(), new ViewsRepositoryImpl());
     }
     @GetMapping("/videos")
     public ResponseEntity<List<Video>> findAllVideos() {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(cultureMediaService.findAll());
+            return ResponseEntity.ok().body(cultureMediaService.findAll());
         }
         catch (VideoNotFoundException e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).header("Error-Message", e.getMessage()).body( Collections.emptyList() );
+            return ResponseEntity.ok().header("Error-Message", e.getMessage()).body( Collections.emptyList() );
             }
         }
 
